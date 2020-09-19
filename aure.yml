@@ -37,9 +37,9 @@ jobs:
      displayName: 'azure install'
      inputs:
        azureSubscription: 'Free Trial (4c1fcf71-64f7-4bc1-8f8e-211c1c5258e4)'
+       scriptType: 'bash'
        scriptLocation: 'inlineScript'
-       inlineScript: |
-         export ENVIRONMENT=nonprod
+       inlineScript: 'export ENVIRONMENT=nonprod'
    # AWS Toolkit for Azure DevOps should be installed in organization
    # https://marketplace.visualstudio.com/acquisition?itemName=AmazonWebServices.aws-vsts-tools
    # AmazonWebServices.aws-vsts-tools.AWSPowerShellModuleScript.AWSPowerShellModuleScript@1

@@ -29,7 +29,6 @@ terraform_validate:
 	./terraform validate -var-file=tf.$(ENVIRONMENT).tfvars 
 
 
-
 # Creating terraform plan
 
 terraform_plan:
@@ -47,11 +46,11 @@ terraform_apply:
 
 terraform_output:
   
-    ./terraform output -json > $(APPID)_$(ENVIRONMENT).json
+       ./terraform output -json > $(APPID)_$(ENVIRONMENT).json
     
-	# cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive)" > $(APPID)_$(ENVIRONMENT)_spn.json
-	
-   cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive) | {client_id: .client_id[], tenant_id: .tenant_id[],secret: .secret[]} " > $(APPID)_$(ENVIRONMENT)_spn.json 
+       # cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive)" > $(APPID)_$(ENVIRONMENT)_spn.json
+
+       cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive) | {client_id: .client_id[], tenant_id: .tenant_id[],secret: .secret[]} " > $(APPID)_$(ENVIRONMENT)_spn.json 
 		
     
 terraform_destroy:

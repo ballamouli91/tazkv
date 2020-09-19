@@ -2,6 +2,11 @@
 /* terraform {
   backend "azurerm" {}
 } */
+  
+// Terraform initialization for storing backend data in s3 bucket
+terraform {
+  backend "s3" {}
+}
 
 
 terraform {

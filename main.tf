@@ -44,6 +44,9 @@ resource "null_resource" "enable-rbac" {
 data "azurerm_log_analytics_workspace" "main" {
   name                = local.loganalytics_name
   resource_group_name = module.resroucegroup.name
+    depends_on = [
+    module.resroucegroup,
+  ]
 }
 module "logs" {
   source              = "./modules/logs"

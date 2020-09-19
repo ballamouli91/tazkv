@@ -46,12 +46,12 @@ terraform_apply:
 
 terraform_output:
   
-       ./terraform output -json > $(APPID)_$(ENVIRONMENT).json
+    ./terraform output -json > $(APPID)_$(ENVIRONMENT).json
     
-       # cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive)" > $(APPID)_$(ENVIRONMENT)_spn.json
+    # cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive)" > $(APPID)_$(ENVIRONMENT)_spn.json
 
-       cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive) | {client_id: .client_id[], tenant_id: .tenant_id[],secret: .secret[]} " > $(APPID)_$(ENVIRONMENT)_spn.json 
-		
+    cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive) | {client_id: .client_id[], tenant_id: .tenant_id[],secret: .secret[]} " > $(APPID)_$(ENVIRONMENT)_spn.json 
+
     
 terraform_destroy:
 
@@ -71,5 +71,5 @@ terraform_clean:
 	rm -rf ".gitignore"
 
 	rm -rf "terraform_$(TerraformVersion)_linux_amd64.zip"
-  
-  rm -rf "jq-linux64"
+
+	rm -rf "jq-linux64"

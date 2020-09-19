@@ -33,7 +33,7 @@ terraform_validate:
 
 terraform_plan:
 
-	./terraform plan -var-file=tf.$(ENVIRONMENT).tfvars -out="tf.$(ENVIRONMENT).tfplan"
+	./terraform plan -var-file=tf.$(ENVIRONMENT).tfvars -out="tf.$(ENVIRONMENT).tfplan" -var "azure-subscription-id=$(ARM_SUBSCRIPTION_ID)" -var "azure-client-id=$(ARM_CLIENT_ID)" -var "azure-client-secret=$(ARM_CLIENT_SECRET)" -var "azure-tenant-id=$(ARM_TENANT_ID)"
 	
 
 # Applying the created terraform plan

@@ -22,6 +22,7 @@ jobs:
      vmImage: 'Ubuntu 18.04'
    variables:
    - group: 'azure_service_connection'
+   - group: 'aws_service_connection'
    steps:
    # Install python
    - task: UsePythonVersion@0

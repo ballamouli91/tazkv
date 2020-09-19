@@ -32,3 +32,20 @@ jobs:
        python -m pip install --upgrade pip setuptools wheel
        export ENVIRONMENT=nonprod
      displayName: 'Install python'
+   - task: AzureCLI@2
+     displayName: 'Terraform Validate'
+     inputs:
+       azureSubscription: 'Free Trial (4c1fcf71-64f7-4bc1-8f8e-211c1c5258e4)'
+       scriptType: 'bash'
+       scriptLocation: 'inlineScript'
+       inlineScript: |
+         export ENVIRONMENT=nonprod
+         make install_terraform_linux
+         make terraform_validate
+       useGlobalConfig: true
+       workingDirectory: '$(System.DefaultWorkingDirectory)'
+   - task: PublishBuildArtifacts@1
+     displayName: 'Publish Artifact: azurekv-nonprod'
+     inputs:
+       ArtifactName: 'azurekv-nonprod'
+       PathtoPublish: '$(Build.SourcesDirectory)'

@@ -1,0 +1,35 @@
+resource "azurerm_log_analytics_workspace" "example" {
+  name                = "nancytest-01"
+  location            = azurerm_resource_group.example.location
+  resource_group_name = azurerm_resource_group.example.name
+  sku                 = "PerGB2018"
+  retention_in_days   = 30
+}
+
+resource "azurerm_monitor_diagnostic_setting" "example" {
+  name               = "nancymonitoring"
+
+  target_resource_id = azurerm_template_deployment.example.outputs["myKvID"]
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.example.id
+
+  log {
+    category = "AuditEvent"
+    enabled  = false
+
+    retention_policy {
+      enabled = false
+    }
+  }
+
+  metric {
+    category = "AllMetrics"
+
+    retention_policy {
+      enabled = false
+    }
+  }
+}
+
+output "exsitingKvID" {
+  value = azurerm_template_deployment.example.outputs["myKvID"]
+}

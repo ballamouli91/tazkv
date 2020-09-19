@@ -22,7 +22,7 @@ azure-tenant-id     = "
 #############
 # key vault secrets #
 #############
-"" will auto-generate the password
+## "" will auto-generate the password
 sqldb = ""
 webadmin = ""
 

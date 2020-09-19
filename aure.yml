@@ -56,6 +56,15 @@ jobs:
          make terraform_validate
        useGlobalConfig: true
        workingDirectory: '$(System.DefaultWorkingDirectory)'
+   - task: AmazonWebServices.aws-vsts-tools.AWSShellScript.AWSShellScript@1
+     inputs:
+       awsCredentials: 'aws_service_connection'
+       regionName: 'ap-southeast-1'
+       scriptType: 'inline'
+       inlineScript: |
+         export ENVIRONMENT=nonprod
+         make terraform_plan
+         make terraform_clean
    - task: PublishBuildArtifacts@1
      displayName: 'Publish Artifact: azurekv-nonprod'
      inputs:

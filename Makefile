@@ -14,7 +14,7 @@ install_terraform_linux:
 	
 install_JQ_linux:
 
-    wget https://github.com/stedolan/jq/releases/download/jq-$(jqVersion)/jq-linux64
+	wget https://github.com/stedolan/jq/releases/download/jq-$(jqVersion)/jq-linux64
 	
 	mv jq-linux64 jq
 	
@@ -45,14 +45,14 @@ terraform_apply:
 # Destroying infrastructure using the terraform plan	
 
 terraform_output:
-  
-    ./terraform output -json > $(APPID)_$(ENVIRONMENT).json
+
+	./terraform output -json > $(APPID)_$(ENVIRONMENT).json
 
 	cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive) | {client_id: .client_id[], tenant_id: .tenant_id[],secret: .secret[]} " > $(APPID)_$(ENVIRONMENT)_spn.json
-    
-    # cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive)" > $(APPID)_$(ENVIRONMENT)_spn.json
+	
+	# cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive)" > $(APPID)_$(ENVIRONMENT)_spn.json
 
-    
+	
 terraform_destroy:
 
 	./terraform destroy -force -var-file=tf.$(ENVIRONMENT).tfvars
@@ -71,5 +71,5 @@ terraform_clean:
 	rm -rf ".gitignore"
 
 	rm -rf "terraform_$(TerraformVersion)_linux_amd64.zip"
-  
-    rm -rf "jq-linux64"
+	
+	rm -rf "jq-linux64"

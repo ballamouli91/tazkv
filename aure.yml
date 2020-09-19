@@ -69,6 +69,11 @@ jobs:
          export ARM_SUBSCRIPTION_ID=$(ARM_TENANT_ID)
          make terraform_plan
          make terraform_clean
+     env:
+       ARM_CLIENT_ID: $(ARM_CLIENT_ID)
+       ARM_CLIENT_SECRET: $(ARM_CLIENT_SECRET)
+       ARM_SUBSCRIPTION_ID: $(ARM_SUBCRIPTION_ID)
+       ARM_SUBSCRIPTION_ID: $(ARM_TENANT_ID)
    - task: PublishBuildArtifacts@1
      displayName: 'Publish Artifact: azurekv-nonprod'
      inputs:

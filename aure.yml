@@ -42,6 +42,7 @@ jobs:
        inlineScript: |
          export ENVIRONMENT=nonprod
          make install_terraform_linux
+         make install_JQ_linux
          make terraform_validate
        useGlobalConfig: true
        workingDirectory: '$(System.DefaultWorkingDirectory)'

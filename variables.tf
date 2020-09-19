@@ -40,7 +40,13 @@ locals {
  loganalytics_name = "${var.LOB}-${var.APPID}-${var.environment}-kvlog"
 }
 
-variable "kv-secrets" { } 
+variable "kv-secrets" {
+  type = map(object({
+    value = string
+  }))
+  description = "Define Azure Key Vault secrets"
+  default = {}
+  } 
 
 variable "secrets" {
   type = map(object({

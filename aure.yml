@@ -56,7 +56,7 @@ jobs:
          make install_JQ_linux
          make terraform_validate
        useGlobalConfig: true
-       workingDirectory: '$(System.DefaultWorkingDirectory)'
+       workingDirectory: '$(System.DefaultWorkingDirectory)/_tazkv'
    - task: PublishBuildArtifacts@1
      displayName: 'Publish Artifact: azurekv-nonprod'
      inputs:

@@ -17,7 +17,7 @@ azure-subscription-id = ""
 azure-client-id       = ""
 // fetch this from azure Devops
 azure-client-secret = ""
-azure-tenant-id     = "
+azure-tenant-id     = ""
 
 #############
 # key vault secrets #

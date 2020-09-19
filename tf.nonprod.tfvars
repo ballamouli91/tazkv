@@ -25,10 +25,6 @@ azure-tenant-id     = "
 "" will auto-generate the password
 sqldb = ""
 webadmin = ""
-roles-test = ""
-test-key = "" 
-test1=""
-
 
 spn_permissions =  [
     "Key Vault Reader (preview)",

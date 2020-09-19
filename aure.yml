@@ -47,6 +47,7 @@ jobs:
      displayName: 'Terraform Validate'
      inputs:
        awsCredentials: aws_service_connection
+       regionName: 'ap-southeast-1'
        scriptType: 'bash'
        scriptLocation: 'inlineScript'
        inlineScript: |

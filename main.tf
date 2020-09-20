@@ -34,7 +34,7 @@ module "keyvault" {
 resource "null_resource" "enable-rbac" {
   provisioner "local-exec" {
     command     = "az keyvault update --name ${module.keyvault.name} -g ${module.resroucegroup.name}  --enable-rbac-authorization true"
-    interpreter = ["PowerShell", "-Command"]
+    interpreter = ["-Command"]
   }
 }
 

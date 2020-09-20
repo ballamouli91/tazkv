@@ -41,13 +41,13 @@ terraform_plan:
 # Applying the created terraform plan
 
 terraform_apply:
+
 	./terraform init -backend-config='tf.backend.$(ENVIRONMENT).tfvars' \
 	&& ./terraform apply -auto-approve "tf.$(ENVIRONMENT).tfplan" -var "azure-subscription-id=$(ARM_SUBSCRIPTION_ID)" -var "azure-client-id=$(ARM_CLIENT_ID)" -var "azure-client-secret=$(ARM_CLIENT_SECRET)" -var "azure-tenant-id=$(ARM_TENANT_ID)"
 
 # Destroying infrastructure using the terraform plan
 
 terraform_output:
-
 	./terraform output -json > $(APPID)_$(ENVIRONMENT).json \
 	&& cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive) | {client_id: .client_id[], tenant_id: .tenant_id[],secret: .secret[]} " > $(APPID)_$(ENVIRONMENT)_spn.json
 

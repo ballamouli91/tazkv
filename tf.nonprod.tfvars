@@ -4,7 +4,7 @@
 ####################
 location    = "EastUS"
 environment = "nonprod"
-APPID       = "GPS"
+APPID       = "nps"
 LOB = "VAE"
 purge_protection_enabled = "true"
 soft_delete_enabled = "true"

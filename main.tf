@@ -60,6 +60,7 @@ module "logs" {
   default_tags        = var.default_tags
   log_analytics_workspace_id = data.azurerm_log_analytics_workspace.main.id
   depends_on = [
+    module.resroucegroup,
     data.azurerm_log_analytics_workspace.main,
   ]
 }

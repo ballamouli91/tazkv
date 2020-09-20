@@ -58,7 +58,7 @@ module "logs" {
   resource_group_name = module.resroucegroup.id
   target_resource_id  = module.keyvault.key-vault-id
   default_tags        = var.default_tags
-  // log_analytics_workspace_id = data.azurerm_log_analytics_workspace.main.id
+  # log_analytics_workspace_id = data.azurerm_log_analytics_workspace.main.id
 }
 
 

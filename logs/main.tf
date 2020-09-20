@@ -8,7 +8,6 @@ resource "azurerm_log_analytics_workspace" "vault_loganalytics" {
   tags = var.default_tags
 }
 
-
 resource "azurerm_monitor_diagnostic_setting" "vault_monitor" {
   name               = local.monitor_name
   target_resource_id = var.target_resource_id
@@ -34,9 +33,11 @@ resource "azurerm_monitor_diagnostic_setting" "vault_monitor" {
       enabled = true
     }
   }
+}
 
+/*
   depends_on = [
     azurerm_log_analytics_workspace.vault_loganalytics,
-  ]
+  ] */
   
-}
+

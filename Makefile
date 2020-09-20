@@ -26,7 +26,7 @@ terraform_validate:
 
 	./terraform init -backend-config='tf.backend.$(ENVIRONMENT).tfvars'
 	
-	./terraform refresh -var-file=tf.$(ENVIRONMENT).tfvars
+	./terraform refresh -var-file=tf.$(ENVIRONMENT).tfvars -var "azure-subscription-id=$(ARM_SUBSCRIPTION_ID)" -var "azure-client-id=$(ARM_CLIENT_ID)" -var "azure-client-secret=$(ARM_CLIENT_SECRET)" -var "azure-tenant-id=$(ARM_TENANT_ID)"
 
 	./terraform validate -var-file=tf.$(ENVIRONMENT).tfvars 
 

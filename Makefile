@@ -32,8 +32,13 @@ terraform_validate:
 # Creating terraform plan
 
 terraform_plan:
+	curl -sL https://aka.ms/InstallAzureCLIDeb | bash 
 
-	./terraform plan -var-file=tf.$(ENVIRONMENT).tfvars -out="tf.$(ENVIRONMENT).tfplan"
+	az account set --subscription $(ARM_SUBSCRIPTION_ID)
+
+	az login --service-principal -u $(ARM_CLIENT_ID) -p $(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
+
+	./terraform plan -var-file=tf.$(ENVIRONMENT).tfvars -var "azure-subscription-id=$(ARM_SUBSCRIPTION_ID)" -var "azure-client-id=$(ARM_CLIENT_ID)" -var "azure-client-secret=$(ARM_CLIENT_SECRET)" -var "azure-tenant-id=$(ARM_TENANT_ID)" -out="tf.$(ENVIRONMENT).tfplan" 
 	
 
 # Applying the created terraform plan

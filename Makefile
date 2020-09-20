@@ -24,17 +24,17 @@ install_JQ_linux:
 
 terraform_validate:
 
-	./terraform init -backend-config='tf.backend.$(ENVIRONMENT).tfvars'
+	./terraform init -backend-config='tf.backend.$(ENVIRONMENT).tfvars' \
 	
-	curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash
+	&& curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash \
 	
-	az account set --subscription $(ARM_SUBSCRIPTION_ID)
+	&& az account set --subscription $(ARM_SUBSCRIPTION_ID)\
 	
-	az login --service-principal -u $(ARM_CLIENT_ID) -p $(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
+	&& az login --service-principal -u $(ARM_CLIENT_ID) -p $(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID) \
 	
-	./terraform refresh -var-file=tf.$(ENVIRONMENT).tfvars -var "azure-subscription-id=$(ARM_SUBSCRIPTION_ID)" -var "azure-client-id=$(ARM_CLIENT_ID)" -var "azure-client-secret=$(ARM_CLIENT_SECRET)" -var "azure-tenant-id=$(ARM_TENANT_ID)"
+	&& ./terraform refresh -var-file=tf.$(ENVIRONMENT).tfvars -var "azure-subscription-id=$(ARM_SUBSCRIPTION_ID)" -var "azure-client-id=$(ARM_CLIENT_ID)" -var "azure-client-secret=$(ARM_CLIENT_SECRET)" -var "azure-tenant-id=$(ARM_TENANT_ID)" \
 
-	./terraform validate -var-file=tf.$(ENVIRONMENT).tfvars 
+	&& ./terraform validate -var-file=tf.$(ENVIRONMENT).tfvars 
 
 # Creating terraform plan
 
@@ -46,17 +46,17 @@ terraform_plan:
 # Applying the created terraform plan
 
 terraform_apply:
-	./terraform init -backend-config='tf.backend.$(ENVIRONMENT).tfvars'
+	./terraform init -backend-config='tf.backend.$(ENVIRONMENT).tfvars' \
 
-	./terraform apply -auto-approve "tf.$(ENVIRONMENT).tfplan" -var "azure-subscription-id=$(ARM_SUBSCRIPTION_ID)" -var "azure-client-id=$(ARM_CLIENT_ID)" -var "azure-client-secret=$(ARM_CLIENT_SECRET)" -var "azure-tenant-id=$(ARM_TENANT_ID)"
+	&& ./terraform apply -auto-approve "tf.$(ENVIRONMENT).tfplan" -var "azure-subscription-id=$(ARM_SUBSCRIPTION_ID)" -var "azure-client-id=$(ARM_CLIENT_ID)" -var "azure-client-secret=$(ARM_CLIENT_SECRET)" -var "azure-tenant-id=$(ARM_TENANT_ID)"
 
 # Destroying infrastructure using the terraform plan
 
 terraform_output:
 
-	./terraform output -json > $(APPID)_$(ENVIRONMENT).json
+	./terraform output -json > $(APPID)_$(ENVIRONMENT).json \
 
-	cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive) | {client_id: .client_id[], tenant_id: .tenant_id[],secret: .secret[]} " > $(APPID)_$(ENVIRONMENT)_spn.json
+	&& cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive) | {client_id: .client_id[], tenant_id: .tenant_id[],secret: .secret[]} " > $(APPID)_$(ENVIRONMENT)_spn.json
 	
 	# cat $(APPID)_$(ENVIRONMENT).json | jq "del (.[] .type, .[] .sensitive)" > $(APPID)_$(ENVIRONMENT)_spn.json
 

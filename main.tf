@@ -65,12 +65,12 @@ module "logs" {
 #####################
 #####     SPN   #####
 #####################
-data "azurerm_resource_group" "main" {
+/* data "azurerm_resource_group" "main" {
   name = "${var.LOB}-${var.APPID}-${var.environment}-rg"
   depends_on = [
     module.resroucegroup,
   ]
-}
+} */
 module "terraform-azure-spn" {
   APPID               = var.APPID
   LOB                 = var.LOB
@@ -88,7 +88,7 @@ data "azurerm_subscription" "main" {}
 
 resource "azurerm_role_assignment" "main" {
   for_each           = data.azurerm_role_definition.main
-  scope              = data.azurerm_resource_group.main.id 
+  scope              = module.resroucegroup.id 
   role_definition_id = format("%s%s", data.azurerm_subscription.main.id, data.azurerm_role_definition.main[each.key].id)
   principal_id       = module.terraform-azure-spn.spn_objectid
   depends_on = [

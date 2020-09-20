@@ -54,7 +54,7 @@ resource "null_resource" "enable-rbac" {
 resource "azurerm_log_analytics_workspace" "vault_loganalytics" {
   name                = local.loganalytics_name
   location            = var.location
-  resource_group_name = local.resource_group_name
+  resource_group_name = module.resroucegroup.name
   sku                 = "PerGB2018"
   ## default range between 30 and 730
   retention_in_days   = 30  

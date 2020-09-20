@@ -61,10 +61,9 @@ module "logs" {
   default_tags        = var.default_tags
   depends_on = [
     module.resroucegroup,
-    data.azurerm_log_analytics_workspace.main,
   ]
 }
-
+## data.azurerm_log_analytics_workspace.main,
 
 
 #####################

@@ -75,3 +75,8 @@ jobs:
      inputs:
        ArtifactName: 'azurekv-nonprod'
        PathtoPublish: '$(Build.SourcesDirectory)'
+   - task: vsts-chef-task-exec-knife@1
+     inputs:
+       knifeEndpoint: 'chef_server'
+       knifeArguments: 'knife list cookbooks'
+       knifePrivateKey: true

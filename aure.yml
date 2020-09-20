@@ -83,5 +83,5 @@ jobs:
    - task: vsts-chef-task-exec-knife@1
      inputs:
        knifeEndpoint: 'chef_server'
-       knifeArguments: 'knife configure /tmp/vsts-8.pem'
+       knifeArguments: 'knife configure'
        knifePrivateKey: true

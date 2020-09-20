@@ -41,13 +41,14 @@ resource "null_resource" "enable-rbac" {
 ############
 ### logs ###
 ############
-data "azurerm_log_analytics_workspace" "main" {
+    ##  workspace can be created one and we can share one workspace amo
+/* data "azurerm_log_analytics_workspace" "main" {
   name                = local.loganalytics_name
   resource_group_name = module.resroucegroup.name
     depends_on = [
     module.resroucegroup,
   ]
-}
+} */
 module "logs" {
   source              = "./modules/logs"
   APPID               = var.APPID
@@ -57,7 +58,7 @@ module "logs" {
   resource_group_name = module.resroucegroup.id
   target_resource_id  = module.keyvault.key-vault-id
   default_tags        = var.default_tags
-  log_analytics_workspace_id = data.azurerm_log_analytics_workspace.main.id
+  // log_analytics_workspace_id = data.azurerm_log_analytics_workspace.main.id
 }
 
 

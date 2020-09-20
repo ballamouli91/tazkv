@@ -32,7 +32,7 @@ terraform_validate:
 # Creating terraform plan
 
 terraform_plan:
-	curl -sL https://aka.ms/InstallAzureCLIDeb | bash 
+	curl -sL https://aka.ms/InstallAzureCLIDeb | sudo bash 
 
 	az account set --subscription $(ARM_SUBSCRIPTION_ID)
 

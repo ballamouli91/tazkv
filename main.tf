@@ -50,6 +50,20 @@ resource "null_resource" "enable-rbac" {
     module.resroucegroup,
   ]
 } */
+      
+resource "azurerm_log_analytics_workspace" "vault_loganalytics" {
+  name                = local.loganalytics_name
+  location            = var.location
+  resource_group_name = local.resource_group_name
+  sku                 = "PerGB2018"
+  ## default range between 30 and 730
+  retention_in_days   = 30  
+  tags = var.default_tags
+  depends_on = [
+    module.resroucegroup,
+  ]
+}
+
 module "logs" {
   source              = "./modules/logs"
   APPID               = var.APPID
@@ -59,7 +73,7 @@ module "logs" {
   resource_group_name = module.resroucegroup.id
   target_resource_id  = module.keyvault.key-vault-id
   default_tags        = var.default_tags
-  // log_analytics_workspace_id = data.azurerm_log_analytics_workspace.main.id
+  log_analytics_workspace_id = azurerm_log_analytics_workspace.vault_loganalytics.id
   depends_on = [
     module.resroucegroup,
   ]

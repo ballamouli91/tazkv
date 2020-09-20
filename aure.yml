@@ -79,7 +79,7 @@ jobs:
      inputs:
        chefDKForceInstall: true
        chefDKChannel: 'stable'
-       chefDKVersion: '4.11'
+       chefDKVersion: '4.11.0'
    - task: vsts-chef-task-exec-knife@1
      inputs:
        knifeEndpoint: 'chef_server'

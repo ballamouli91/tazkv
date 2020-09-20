@@ -8,7 +8,7 @@ APPID       = "nps"
 LOB = "VAE"
 purge_protection_enabled = "true"
 soft_delete_enabled = "true"
-soft_delete_retention_days = 90
+soft_delete_retention_days = 7
 
 ##################
 # Authentication #

@@ -14,7 +14,7 @@ output "key-vault-secrets" {
 
 output "spn_passwordguid" {
   value = "${module.terraform-azure-spn.spn_passwordguid}"
-} */
+} 
 
 output "spn_objectid" {
   value = "${module.terraform-azure-spn.spn_objectid}"
@@ -22,12 +22,12 @@ output "spn_objectid" {
 
 output "client_id" {
   value = "${module.terraform-azure-spn.spn_applicationid}"
-}
+} 
 
 output "secret" {
   sensitive = true
   value = module.terraform-azure-spn.spn_pssword
-}
+} */
 
 output "tenant_id" {
   value = var.azure-tenant-id

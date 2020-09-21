@@ -102,5 +102,5 @@ locals {
 }
 
 variable "spn_objectid" {
-  default = "12998ef0-e489-4ce7-ac88-3b056f492c10"
+  default = "61b3232e-df97-4d21-b8f6-462cb483eeec"
   }

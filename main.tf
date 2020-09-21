@@ -88,14 +88,14 @@ module "logs" {
   depends_on = [
     module.resroucegroup,
   ]
-} */
+} 
 module "terraform-azure-spn" {
   APPID               = var.APPID
   LOB                 = var.LOB
   environment         = var.environment
   source     = "./modules/spn"
   default_spn_tags = var.default_spn_tags
-}
+} */
 
 data "azurerm_role_definition" "main" {
   for_each = toset(var.spn_permissions)
@@ -108,7 +108,7 @@ resource "azurerm_role_assignment" "main" {
   for_each           = data.azurerm_role_definition.main
   scope              = module.resroucegroup.id 
   role_definition_id = format("%s%s", data.azurerm_subscription.main.id, data.azurerm_role_definition.main[each.key].id)
-  principal_id       = module.terraform-azure-spn.spn_objectid
+  principal_id       = var.spn_objectid
   depends_on = [
     module.resroucegroup,
   ]

@@ -109,9 +109,9 @@ data "azurerm_subscription" "main" {}
 
 resource "azurerm_role_assignment" "main" {
   for_each           = data.azurerm_role_definition.main
-  scope              = data.azurerm_subscription.main.id 
+  scope              = module.resroucegroup.id 
   role_definition_id = format("%s%s", data.azurerm_subscription.main.id, data.azurerm_role_definition.main[each.key].id)
-  principal_id       = var.spn_objectid
+  principal_id       = 12998ef0-e489-4ce7-ac88-3b056f492c10
   depends_on = [
     module.resroucegroup,
   ]

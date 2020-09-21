@@ -75,13 +75,3 @@ jobs:
      inputs:
        ArtifactName: 'azurekv-nonprod'
        PathtoPublish: '$(Build.SourcesDirectory)'
-   - task: vsts-chef-task-install-chefdk@1
-     inputs:
-       chefDKForceInstall: true
-       chefDKChannel: 'stable'
-       chefDKVersion: '4.11.0'
-   - task: vsts-chef-task-exec-knife@1
-     inputs:
-       knifeEndpoint: 'chef_server'
-       knifeArguments: 'knife configure'
-       knifePrivateKey: true

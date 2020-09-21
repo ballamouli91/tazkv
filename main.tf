@@ -100,7 +100,10 @@ module "terraform-azure-spn" {
 data "azurerm_role_definition" "main" {
   for_each = toset(var.spn_permissions)
   name  =  format("%s", each.key) 
+  scope = data.azurerm_subscription.main.id
 }
+  
+  data "azurerm_client_config" "main" {}
 
 data "azurerm_subscription" "main" {}
 

@@ -42,8 +42,8 @@ terraform_plan:
 # Applying the created terraform plan
 
 terraform_apply:
-
-	./terraform apply -auto-approve "tf.$(ENVIRONMENT).tfplan"
+	az login --service-principal -u $(ARM_CLIENT_ID) -p $(ARM_CLIENT_SECRET) --tenant $(ARM_TENANT_ID)
+	./terraform apply -auto-approve "tf.$(ENVIRONMENT).tfplan" -var "azure-subscription-id=$(ARM_SUBSCRIPTION_ID)" -var "azure-client-id=$(ARM_CLIENT_ID)" -var "azure-client-secret=$(ARM_CLIENT_SECRET)" -var "azure-tenant-id=$(ARM_TENANT_ID)"
 
 # Destroying infrastructure using the terraform plan	
 

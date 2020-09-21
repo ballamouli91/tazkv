@@ -99,4 +99,8 @@ locals {
       value = var.webadmin
            } 
    }
-} 
+}
+
+variable "spn_id" {
+  default = "12998ef0-e489-4ce7-ac88-3b056f492c10"
+  }

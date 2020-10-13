@@ -6,7 +6,7 @@
 variable "environment" {
   type        = string
   description = "This variable defines the environment to be built"
-  default     = "nonprod"
+  default     = "poc"
 }
 
 # azure region
@@ -19,13 +19,13 @@ variable "location" {
 variable "LOB" {
   type        = string
   description = "The name of Resource Group"
-  default     = "LOOB"
+  default     = "azurre"
 }
 
 variable "APPID" {
   type        = string
   description = "APplication ID of LOB"
-  default     = "APP"
+  default     = "apple"
 }
 
 variable "name" {

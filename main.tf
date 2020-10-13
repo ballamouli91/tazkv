@@ -88,7 +88,7 @@ module "logs" {
   depends_on = [
     module.resroucegroup,
   ]
-} */
+} 
 module "terraform-azure-spn" {
   APPID               = var.APPID
   LOB                 = var.LOB
@@ -112,7 +112,7 @@ resource "azurerm_role_assignment" "main" {
   depends_on = [
     module.resroucegroup,
   ]
-}
+} */
 
 
 #################
